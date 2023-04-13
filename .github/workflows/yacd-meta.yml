@@ -6,7 +6,7 @@ on:
 name: yacd-mata
 
 jobs:
-  docker:
+  yacd-mata:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
