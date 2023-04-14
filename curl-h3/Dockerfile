@@ -15,8 +15,19 @@ WORKDIR /app
 RUN git clone https://github.com/curl/curl
 
 WORKDIR /app/curl
-RUN autoreconf -fi
-RUN ./configure LDFLAGS="-Wl,-rpath,$PWD/../quiche/target/release" --with-openssl=$PWD/../quiche/quiche/deps/boringssl/src --with-quiche=$PWD/../quiche/target/release
+RUN ./buildconf
+RUN ./configure LDFLAGS="-Wl,-rpath,$PWD/../quiche/target/release" \
+        --with-openssl=$PWD/../quiche/quiche/deps/boringssl/src \
+        --with-quiche=$PWD/../quiche/target/release \
+        --enable-alt-svc \
+        --disable-ldap \
+        --disable-ldaps \
+        --disable-manual \
+        --disable-shared \
+        --enable-ipv6 \
+        --enable-threaded-resolver \
+        --with-random=/dev/urandom \
+        --with-ca-bundle=/etc/ssl/certs/ca-certificates.crt
 RUN make
 RUN make install
 
@@ -24,8 +35,7 @@ RUN make install
 
 FROM --platform=$TARGETPLATFORM alpine:latest as main
 
-COPY --from=build /usr/local/bin /usr/local/bin
-COPY --from=build /usr/local/lib /usr/local/lib
+COPY --from=build /usr/local/bin/curl /usr/local/bin/curl
 
 RUN apk update && apk add libgcc
 
