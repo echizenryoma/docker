@@ -6,7 +6,7 @@ on:
 name: yeahwu-check
 
 jobs:
-  openssl:
+  yeahwu-check:
     runs-on: ubuntu-latest
     env:
       working-directory: ./yeahwu-check
