@@ -8,6 +8,8 @@ name: yeahwu-check
 jobs:
   openssl:
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./yeahwu-check
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -29,7 +31,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: .
+          context: ${{ env.working-directory }}
           platforms: |
             linux/amd64
             linux/arm64
