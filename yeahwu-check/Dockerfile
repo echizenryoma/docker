@@ -6,5 +6,5 @@ RUN apk update && \
     curl -L "https://github.com/yeahwu/check/raw/main/check.sh" -o /app/check.sh && \
     chmod +x /app/check.sh
 
-ENTRYPOINT [ "/usr/bin/bash" ]
+ENTRYPOINT [ "/bin/bash" ]
 CMD [ "/app/check.sh" ]
