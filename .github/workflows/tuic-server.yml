@@ -9,7 +9,7 @@ jobs:
   tuic-server:
     strategy:
       matrix:
-        git_branch: ["0.8.x"]
+        git_branch: ["dev"]
     runs-on: ubuntu-latest
     env:
       working-directory: ./tuic-server
@@ -42,5 +42,4 @@ jobs:
           build-args: |
             GIT_BRANCH=${{ matrix.git_branch }}
           tags: |
-            echizenryoma/tuic-server:latest
-            echizenryoma/tuic-server:${{ matrix.git_branch }}
+            echizenryoma/tuic-server:dev
