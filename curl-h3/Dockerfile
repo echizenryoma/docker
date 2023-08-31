@@ -28,7 +28,7 @@ RUN ./configure LDFLAGS="-Wl,-rpath,$PWD/../quiche/target/release" \
         --enable-threaded-resolver \
         --with-random=/dev/urandom \
         --with-ca-bundle=/etc/ssl/certs/ca-certificates.crt
-RUN make
+RUN make -j$(nproc)
 RUN make install
 
 # END build
