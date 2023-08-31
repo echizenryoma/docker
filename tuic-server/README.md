@@ -1,4 +1,4 @@
-# tuic-server-docker
+# tuic-server
 
 Run TUIC server in docker
 
