@@ -1,7 +1,4 @@
 FROM --platform=$TARGETPLATFORM alpine as build
-
-ARG GIT_BRANCH
-
 WORKDIR /app
 
 RUN apk update
