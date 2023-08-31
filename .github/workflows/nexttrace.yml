@@ -6,7 +6,7 @@ on:
 name: nexttrace
 
 jobs:
-  openssl:
+  nexttrace:
     runs-on: ubuntu-latest
     env:
       working-directory: ./nexttrace
