@@ -2,7 +2,7 @@ FROM --platform=$TARGETPLATFORM alpine as build
 WORKDIR /app
 
 RUN apk update
-RUN apk add gcc g++ make cmake geoip-dev
+RUN apk add git gcc g++ make cmake geoip-dev
 RUN git clone https://github.com/dreibh/subnetcalc.git
 
 WORKDIR /app/subnetcalc
