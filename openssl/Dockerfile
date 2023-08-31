@@ -1,7 +1,6 @@
 FROM --platform=$TARGETPLATFORM alpine:latest
 
-RUN apk update && \
-    apk add openssl
+RUN apk add --no-cache openssl
 
 ENTRYPOINT [ "/usr/bin/openssl" ]
 CMD [ ]
