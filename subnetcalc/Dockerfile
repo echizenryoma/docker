@@ -20,8 +20,7 @@ FROM --platform=$TARGETPLATFORM alpine:latest as main
 COPY --from=build /usr/bin/subnetcalc /usr/bin/subnetcalc
 COPY --from=build /usr/share/man/man1/subnetcalc.1 /usr/share/man/man1/subnetcalc.1
 
-RUN apk update && \
-    apk add geoip
+RUN apk add --no-cache libstdc++ geioip
 
 ENTRYPOINT [ "/usr/bin/subnetcalc" ]
 CMD [ ]
