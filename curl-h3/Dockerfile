@@ -1,7 +1,7 @@
 FROM --platform=$TARGETPLATFORM rust:alpine as build
 
 RUN apk update
-RUN apk add git gcc g++ musl-dev cmake make autoconf automake libtool pkgconfig
+RUN apk add git gcc g++ musl-dev cmake make autoconf automake libtool pkgconfig libpsl-dev
 
 WORKDIR /app
 RUN git clone --recursive https://github.com/cloudflare/quiche
@@ -15,7 +15,7 @@ WORKDIR /app
 RUN git clone https://github.com/curl/curl
 
 WORKDIR /app/curl
-RUN ./buildconf
+RUN autoreconf -fi
 RUN ./configure LDFLAGS="-Wl,-rpath,$PWD/../quiche/target/release" \
         --with-openssl=$PWD/../quiche/quiche/deps/boringssl/src \
         --with-quiche=$PWD/../quiche/target/release \
