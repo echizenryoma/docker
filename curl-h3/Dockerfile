@@ -37,7 +37,7 @@ FROM --platform=$TARGETPLATFORM alpine:latest as main
 
 COPY --from=build /usr/local/bin/curl /usr/local/bin/curl
 
-RUN apk update && apk add libgcc
+RUN apk update && apk add libgcc libidn2 libpsl
 
 ENTRYPOINT [ "/usr/local/bin/curl" ]
 CMD [ ]
