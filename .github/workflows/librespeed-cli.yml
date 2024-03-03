@@ -8,12 +8,12 @@ name: librespeed-cli
 jobs:
   librespeed-cli:
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./librespeed-cli
     steps:
       - name: Checkout
         id: checkout
         uses: actions/checkout@v4
-        with:
-          repository: librespeed/speedtest-cli
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
