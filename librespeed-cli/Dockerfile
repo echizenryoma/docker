@@ -13,7 +13,7 @@ RUN ./build.sh
 
 FROM --platform=$TARGETPLATFORM alpine:latest as main
 
-COPY --from=build /usr/src/librespeed-cli/out/librespeed-cli* /usr/local/bin/librespeed-cli
+COPY --from=build /app/speedtest-cli/out/librespeed-cli* /usr/local/bin/librespeed-cli
 
 ENTRYPOINT [ "/usr/local/bin/librespeed-cli" ]
 CMD [ ]
