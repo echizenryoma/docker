@@ -7,7 +7,7 @@ WORKDIR /app
 RUN git clone --recursive https://github.com/librespeed/speedtest-cli
 
 WORKDIR /app/speedtest-cli
-RUN RUN ./build.sh
+RUN ./build.sh
 
 # END build
 
