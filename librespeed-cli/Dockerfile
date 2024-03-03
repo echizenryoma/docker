@@ -1,7 +1,7 @@
 FROM --platform=$TARGETPLATFORM golang:alpine as build
 
 RUN apk update
-RUN apk add git
+RUN apk add git bash
 
 WORKDIR /app
 RUN git clone --recursive https://github.com/librespeed/speedtest-cli
