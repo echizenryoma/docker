@@ -11,7 +11,7 @@ RUN RUN ./build.sh
 
 # END build
 
-FROM --platform=$TARGETPLATFORM apline:latest as main
+FROM --platform=$TARGETPLATFORM alpine:latest as main
 
 COPY --from=build /usr/src/librespeed-cli/out/librespeed-cli* /usr/local/bin/librespeed-cli
 
