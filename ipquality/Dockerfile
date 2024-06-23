@@ -1,7 +1,10 @@
 FROM --platform=$TARGETPLATFORM alpine:latest
 
-RUN apk update && \
-    apk add jq curl bc netcat-openbsd grep bind-tools iproute2
+ADD  https://raw.githubusercontent.com/xykt/IPQuality/main/ip.sh /app
 
-ENTRYPOINT [ "bash <(curl -Ls IP.Check.Place)" ]
+RUN apk update && \
+    apk add jq curl bc netcat-openbsd grep bind-tools iproute2 && \
+    chmod +x /app/ip.sh
+
+ENTRYPOINT [ "/app/ip.sh" ]
 CMD [ ]
