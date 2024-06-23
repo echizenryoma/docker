@@ -8,7 +8,7 @@ RUN apt update && \
     rm /app/script.deb.sh && \
     apt update && \
     apt install -y speedtest && \
-    apt-get clean && \
+    apt clean && \
     rm -rf /tmp/* /var/tmp/*
 
 ENTRYPOINT [ "/usr/bin/speedtest" ]
