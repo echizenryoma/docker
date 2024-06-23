@@ -1,10 +1,10 @@
 FROM --platform=$TARGETPLATFORM alpine:latest
 
-ADD  https://raw.githubusercontent.com/xykt/IPQuality/main/ip.sh /app
+ADD https://raw.githubusercontent.com/xykt/IPQuality/main/ip.sh /app/ip.sh
 
+RUN chmod +x /app/ip.sh
 RUN apk update && \
-    apk add jq curl bc netcat-openbsd grep bind-tools iproute2 && \
-    chmod +x /app/ip.sh
+    apk add jq curl bc netcat-openbsd grep bind-tools iproute2
 
 ENTRYPOINT [ "/app/ip.sh" ]
 CMD [ ]
