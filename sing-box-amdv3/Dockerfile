@@ -5,10 +5,9 @@ RUN apk update
 RUN apk add jq curl tar gzip
 
 WORKDIR /app/sing-box
-RUN version=$(curl -Lsf "https://api.github.com/repos/SagerNet/sing-box/releases/latest" | jq -r ".name") &&
-    curl -L "https://github.com/SagerNet/sing-box/releases/download/v${version}/sing-box-${version}-linux-amd64v3.tar.gz" -o /app/sing-box/sing-box-${version}-linux-amd64v3.tar.gz &&
-    tar -xzvf /app/sing-box/sing-box-${version}-linux-amd64v3.tar.gz &&
-    rm /app/sing-box/sing-box-${version}-linux-amd64v3.tar.gz
+RUN version=$(curl -Lsf "https://api.github.com/repos/SagerNet/sing-box/releases/latest" | jq -r ".name") && curl -L "https://github.com/SagerNet/sing-box/releases/download/v${version}/sing-box-${version}-linux-amd64v3.tar.gz" -o /app/sing-box/sing-box-${version}-linux-amd64v3.tar.gz
+RUN tar -xzvf /app/sing-box/sing-box-${version}-linux-amd64v3.tar.gz
+RUN rm /app/sing-box/sing-box-${version}-linux-amd64v3.tar.gz
 
 # END build
 
