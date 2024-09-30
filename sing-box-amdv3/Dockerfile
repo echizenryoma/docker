@@ -12,9 +12,9 @@ RUN rm /app/sing-box/sing-box-${version}-linux-amd64v3.tar.gz
 # END build
 
 FROM --platform=$TARGETPLATFORM alpine:latest as main
-RUN set -ex &&
-    apk upgrade &&
-    apk add bash tzdata ca-certificates nftables &&
+RUN set -ex && \
+    apk upgrade && \
+    apk add bash tzdata ca-certificates nftables && \
     rm -rf /var/cache/apk/*
 COPY --from=builder /app/sing-box/sing-box /usr/local/bin/sing-box
 ENTRYPOINT ["sing-box"]
