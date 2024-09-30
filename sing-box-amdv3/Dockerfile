@@ -9,7 +9,6 @@ RUN version=$(curl -Lsf "https://api.github.com/repos/SagerNet/sing-box/releases
     curl -L "https://github.com/SagerNet/sing-box/releases/download/v${version}/sing-box-${version}-linux-amd64v3.tar.gz" -o /app/sing-box/sing-box-${version}-linux-amd64v3.tar.gz && \
     tar -xzvf /app/sing-box/sing-box-${version}-linux-amd64v3.tar.gz && \
     mv /app/sing-box/sing-box-${version}-linux-amd64v3/sing-box /app/sing-box/sing-box
-RUN rm /app/sing-box/sing-box-${version}-linux-amd64v3.tar.gz
 
 # END build
 
