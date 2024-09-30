@@ -17,5 +17,5 @@ RUN set -ex && \
     apk upgrade && \
     apk add bash tzdata ca-certificates nftables && \
     rm -rf /var/cache/apk/*
-COPY --from=builder /app/sing-box/sing-box /usr/local/bin/sing-box
+COPY --from=build /app/sing-box/sing-box /usr/local/bin/sing-box
 ENTRYPOINT ["sing-box"]
