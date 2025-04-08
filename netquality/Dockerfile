@@ -1,4 +1,4 @@
-FROM --platform=$TARGETPLATFORM echizenryoma/speedtest-cli:latest
+FROM --platform=$TARGETPLATFORM rdbg/speedtest:latest
 
 ADD https://raw.githubusercontent.com/xykt/NetQuality/refs/heads/main/net.sh /app/ip.sh
 

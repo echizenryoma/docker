@@ -37,4 +37,4 @@ jobs:
           cache-to: type=gha,mode=max
           push: true
           tags: |
-            echizenryoma/speedtest:latest
+            rdbg/speedtest:latest
