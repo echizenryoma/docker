@@ -1,5 +1,5 @@
 # speedtest-cli
 
-Git repository: https://github.com/i-abc/Speedtest
+Home: https://www.speedtest.net/apps/cli
 
-Docker Hub: https://hub.docker.com/r/echizenryoma/speedtest
+Docker Hub: https://hub.docker.com/r/echizenryoma/speedtest-cli
