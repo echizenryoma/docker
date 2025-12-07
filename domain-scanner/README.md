@@ -1,4 +1,4 @@
-# subnetcalc
+# domain-scanner
 
 Git repository: https://github.com/xuemian168/domain-scanner
 

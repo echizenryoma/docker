@@ -15,5 +15,6 @@ FROM --platform=$TARGETPLATFORM alpine:latest as main
 
 COPY --from=build /app/domain-scanner/domain-scanner /usr/bin/domain-scanner
 
+WORKDIR /app
 ENTRYPOINT [ "/usr/bin/domain-scanner" ]
 CMD [ ]
