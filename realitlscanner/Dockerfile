@@ -15,10 +15,10 @@ FROM --platform=$TARGETPLATFORM alpine:latest as main
 
 RUN apk add --no-cache ca-certificates
 
-COPY --from=build /app/RealiTLScanner/RealiTLScanner /app/RealiTLScanner
-
-WORKDIR /app
+COPY --from=build /app/RealiTLScanner/RealiTLScanner /usr/bin/RealiTLScanner
 ADD https://github.com/Loyalsoldier/geoip/releases/latest/download/Country.mmdb /app/Country.mmdb
 
-ENTRYPOINT [ "/app/RealiTLScanner" ]
+WORKDIR /app
+
+ENTRYPOINT [ "/usr/bin/RealiTLScanner" ]
 CMD [ ]
