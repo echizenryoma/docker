@@ -7,8 +7,7 @@ RUN git clone https://github.com/XTLS/RealiTLScanner.git
 
 WORKDIR /app/RealiTLScanner
 RUN go mod download
-ENV CGO_ENABLED=0
-RUN go build -trimpath -ldflags "-s -w" -o RealiTLScanner .
+RUN go build -o RealiTLScanner .
 
 # END build
 
@@ -16,10 +15,10 @@ FROM --platform=$TARGETPLATFORM alpine:latest as main
 
 RUN apk add --no-cache ca-certificates
 
-COPY --from=build /app/RealiTLScanner/RealiTLScanner /app/RealiTLScanner
-ADD https://github.com/Loyalsoldier/geoip/releases/latest/download/Country.mmdb /app/Country.mmdb
-
 WORKDIR /app
 
-ENTRYPOINT [ "/app/RealiTLScanner" ]
+COPY --from=build /app/RealiTLScanner/RealiTLScanner /usr/bin/RealiTLScanner
+ADD https://github.com/Loyalsoldier/geoip/releases/latest/download/Country.mmdb /app/Country.mmdb
+
+ENTRYPOINT [ "/usr/bin/RealiTLScanner" ]
 CMD [ ]
