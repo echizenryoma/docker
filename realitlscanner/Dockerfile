@@ -7,6 +7,7 @@ RUN git clone https://github.com/XTLS/RealiTLScanner.git
 
 WORKDIR /app/RealiTLScanner
 RUN go mod download
+ENV CGO_ENABLED=0
 RUN go build -trimpath -ldflags "-s -w" -o RealiTLScanner .
 
 # END build
