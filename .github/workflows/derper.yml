@@ -1,0 +1,49 @@
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 4 * * *
+
+name: derper
+
+jobs:
+  derper:
+    runs-on: ubuntu-latest
+    env:
+      working-directory: ./derper
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Get latest tailscale version
+        run: |
+          TAILSCALE_VERSION=$(curl -s https://api.github.com/repos/tailscale/tailscale/releases/latest | jq -r '.tag_name')
+          echo "Latest tailscale version: $TAILSCALE_VERSION"
+          echo TAILSCALE_VERSION=$TAILSCALE_VERSION >> $GITHUB_ENV
+
+      - name: Build and push
+        uses: docker/build-push-action@v7
+        with:
+          context: ${{ env.working-directory }}
+          platforms: |
+            linux/amd64
+            linux/arm64
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          push: true
+          tags: |
+            rdbg/derper:${{ env.TAILSCALE_VERSION }}
+            rdbg/derper:latest
+          build-args: |
+            DERP_VERSION=${{ env.TAILSCALE_VERSION }}
