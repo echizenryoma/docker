@@ -1,4 +1,4 @@
-FROM --platform=$TARGETPLATFORM alpine as build
+FROM --platform=$TARGETPLATFORM alpine as builder
 WORKDIR /app
 
 RUN apk update
@@ -8,7 +8,7 @@ RUN curl nxtrace.org/nt | bash
 
 FROM --platform=$TARGETPLATFORM alpine:latest as main
 
-COPY --from=build /usr/local/bin/nexttrace /usr/local/bin/nexttrace
+COPY --from=builder /usr/local/bin/nexttrace /usr/local/bin/nexttrace
 
 ENTRYPOINT [ "/usr/local/bin/nexttrace" ]
 CMD [ ]

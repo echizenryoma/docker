@@ -1,4 +1,4 @@
-FROM --platform=$TARGETPLATFORM golang:alpine as build
+FROM --platform=$TARGETPLATFORM golang:alpine as builder
 WORKDIR /app
 
 RUN apk update
@@ -13,7 +13,7 @@ RUN go build -o cfst main.go
 
 FROM --platform=$TARGETPLATFORM alpine:latest as main
 
-COPY --from=build /app/CloudflareSpeedTest/cfst /usr/bin/cfst
+COPY --from=builder /app/CloudflareSpeedTest/cfst /usr/bin/cfst
 
 WORKDIR /app
 ENTRYPOINT [ "/usr/bin/cfst" ]

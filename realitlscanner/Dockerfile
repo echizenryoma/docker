@@ -1,4 +1,4 @@
-FROM --platform=$TARGETPLATFORM golang:alpine as build
+FROM --platform=$TARGETPLATFORM golang:alpine as builder
 WORKDIR /app
 
 RUN apk update
@@ -17,7 +17,7 @@ RUN apk add --no-cache ca-certificates
 
 WORKDIR /app
 
-COPY --from=build /app/RealiTLScanner/RealiTLScanner /usr/bin/RealiTLScanner
+COPY --from=builder /app/RealiTLScanner/RealiTLScanner /usr/bin/RealiTLScanner
 ADD https://github.com/Loyalsoldier/geoip/releases/latest/download/Country.mmdb /app/Country.mmdb
 
 ENTRYPOINT [ "/usr/bin/RealiTLScanner" ]

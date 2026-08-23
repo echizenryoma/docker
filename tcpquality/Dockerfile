@@ -1,4 +1,4 @@
-FROM --platform=$TARGETPLATFORM alpine:latest as build
+FROM --platform=$TARGETPLATFORM alpine:latest as builder
 WORKDIR /app
 
 RUN apk add --no-cache bash curl ca-certificates git
