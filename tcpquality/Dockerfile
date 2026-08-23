@@ -3,6 +3,7 @@ WORKDIR /app
 
 RUN apk add --no-cache bash curl ca-certificates git
 RUN git clone https://github.com/ibsgss/TcpQuality
+RUN chmod +x /app/TcpQuality/*.sh
 RUN curl -sL https://nxtrace.org/nt | bash -s -- --flavor tiny
 
 FROM --platform=$TARGETPLATFORM alpine:latest as main
@@ -12,10 +13,8 @@ RUN apk add --no-cache bash curl ca-certificates bind-tools \
     findutils gawk grep sed tar iptables kmod ncurses tzdata \
     net-tools procps util-linux
 
-COPY --from=builder /app/TcpQuality/runTcpQuality.sh /bin/runTcpQuality.sh
-COPY --from=builder /app/TcpQuality/runTcpQuality-menu.sh /bin/runTcpQuality-menu.sh
 COPY --from=builder /app/TcpQuality/runTcpQuality-core.sh /bin/runTcpQuality-core.sh
 COPY --from=builder /usr/local/bin/nexttrace-tiny /bin/nexttrace-tiny
 
-ENTRYPOINT ["/bin/runTcpQuality-menu.sh"]
+ENTRYPOINT ["/bin/runTcpQuality-core.sh"]
 CMD [ ]
