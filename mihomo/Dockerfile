@@ -15,4 +15,4 @@ FROM --platform=$TARGETPLATFORM alpine:latest as main
 COPY --from=build /app/mihomo/mihomo /mihomo
 RUN apk add --no-cache ca-certificates tzdata iptables
 VOLUME ["/root/.config/mihomo/"]
-ENTRYPOINT [ "/mihomo ]
+ENTRYPOINT [ "/mihomo" ]
