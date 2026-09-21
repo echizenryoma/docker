@@ -3,7 +3,7 @@ WORKDIR /app
 
 RUN apk update
 RUN apk add git
-RUN git clone -b Alpha https://github.com/echizenryoma/mihomo.git
+RUN git clone https://github.com/echizenryoma/mihomo.git
 
 WORKDIR /app/mihomo
 RUN go mod download
